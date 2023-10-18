@@ -1,20 +1,28 @@
+import {ThemeProvider} from '@shopify/restyle';
 import React from 'react';
-import {SafeAreaView, useColorScheme} from 'react-native';
+import {SafeAreaView, View} from 'react-native';
+import {Button} from './src/components/Button';
 
-import {Colors} from 'react-native/Libraries/NewAppScreen';
 import {Text} from './src/components/Text';
+import {theme} from './src/theme/theme';
 
 function App(): JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <Text preset="headingLarge">Test</Text>
-    </SafeAreaView>
+    <ThemeProvider theme={theme}>
+      <SafeAreaView>
+        <View style={{paddingHorizontal: 24}}>
+          <Text preset="headingLarge" italic>
+            Coffstack
+          </Text>
+
+          <Button title="Primary" marginBottom="s12" />
+          <Button disabled title="Primary" marginBottom="s12" />
+          <Button preset="outline" title="Outline" marginBottom="s12" />
+
+          <Button disabled preset="outline" title="Lading" />
+        </View>
+      </SafeAreaView>
+    </ThemeProvider>
   );
 }
 
